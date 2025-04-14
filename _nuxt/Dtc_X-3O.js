@@ -1,1 +1,0 @@
-import{j as c,c as a,i as s,f as n,bZ as r,w as p,C as l,b_ as u,b$ as d}from"./DcOeLl_I.js";const f={};function m(e,i){const t=r,o=u,_=d;return s(),a("div",null,[n(t),n(o,null,{default:p(()=>[l(e.$slots,"default")]),_:3}),n(_)])}const b=c(f,[["render",m]]);export{b as default};
