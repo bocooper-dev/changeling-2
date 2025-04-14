@@ -50,7 +50,7 @@ export const collections = {
   }),
   posts: defineCollection({
     type: 'page',
-    source: '3.blog/**/*',
+    source: 'blog/**/*',
     schema: z.object({
       title: z.string().nonempty(),
       description: z.string().nonempty(),
@@ -150,7 +150,7 @@ export const collections = {
     })
   }),
   blog: defineCollection({
-    source: '3.blog.yml',
+    source: 'blog.yml',
     type: 'data',
     schema: sectionSchema
   })
