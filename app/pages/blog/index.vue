@@ -2,7 +2,20 @@
 const route = useRoute()
 
 const { data: page } = await useAsyncData('blog', () => queryCollection('blog').first())
-const { data: posts } = await useAsyncData(route.path, () => queryCollection('posts').all())
+
+const { data } = await useAsyncData(route.path, () => {
+  return Promise.all([
+    queryCollection('posts').order('date', 'DESC').all(),
+    queryCollection('posts').count()
+  ])
+}, {
+  transform: data => {
+    return {
+      posts: data[0],
+      count: data[1]
+    }
+  }
+})
 
 useSeoMeta({
   title: page.value?.title,
@@ -19,12 +32,13 @@ defineOgImageComponent('Saas')
     <UPageHeader
       v-bind="page"
       class="py-[50px]"
+      :headline="`${page?.headline ? page.headline + ' | ' : ''} ${data?.count} ${data?.count === 1 ? 'post' : 'posts'}`"
     />
 
     <UPageBody>
       <UBlogPosts>
         <UBlogPost
-          v-for="(post, index) in posts"
+          v-for="(post, index) in data?.posts"
           :key="index"
           :to="post.path"
           :title="post.title"

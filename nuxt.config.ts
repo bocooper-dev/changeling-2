@@ -10,7 +10,11 @@ export default defineNuxtConfig({
   ],
 
   devtools: {
-    enabled: true
+    enabled: true,
+
+    timeline: {
+      enabled: true
+    }
   },
 
   css: ['~/assets/css/main.css'],
@@ -24,12 +28,6 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2024-07-11',
-
-  vite: { // Prevent's local debug from crashing https://github.com/nuxt/content/issues/3306#issuecomment-2796257228
-    optimizeDeps: {
-      include: ['brace-expansion']
-    }
-  },
 
   nitro: {
     prerender: {
@@ -46,6 +44,12 @@ export default defineNuxtConfig({
         commaDangle: 'never',
         braceStyle: '1tbs'
       }
+    }
+  },
+
+  vite: { // Prevent's local debug from crashing https://github.com/nuxt/content/issues/3306#issuecomment-2796257228
+    optimizeDeps: {
+      include: ['brace-expansion']
     }
   }
 })
